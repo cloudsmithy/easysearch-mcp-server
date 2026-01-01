@@ -276,3 +276,4 @@ mypy src/
 ## 许可证
 
 MIT License
+# easysearch-mcp-server
