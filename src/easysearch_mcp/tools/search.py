@@ -349,23 +349,6 @@ def register_search_tools(mcp: FastMCP):
         return client.get(f"/{index}/_field_caps", params)
     
     @mcp.tool()
-    def terms_enum(index: str, field: str, string: str = None, size: int = 10) -> dict:
-        """
-        枚举字段的词项（用于自动补全）
-        
-        参数:
-            index: 索引名称
-            field: 字段名
-            string: 前缀字符串
-            size: 返回数量
-        """
-        client = get_client()
-        body = {"field": field, "size": size}
-        if string:
-            body["string"] = string
-        return client.post(f"/{index}/_terms_enum", body)
-    
-    @mcp.tool()
     def knn_search(index: str, field: str, query_vector: list, k: int = 10, num_candidates: int = 100, filter: dict = None) -> dict:
         """
         K近邻向量搜索
@@ -420,17 +403,3 @@ def register_search_tools(mcp: FastMCP):
         client = get_client()
         body = {"query": query, "fetch_size": fetch_size}
         return client.post(f"/_sql?format={format}", body)
-    
-    @mcp.tool()
-    def sql_translate(query: str) -> dict:
-        """
-        将 SQL 转换为 DSL
-        
-        参数:
-            query: SQL 查询语句
-        
-        返回等效的 Elasticsearch DSL 查询
-        """
-        client = get_client()
-        body = {"query": query}
-        return client.post("/_sql/translate", body)
