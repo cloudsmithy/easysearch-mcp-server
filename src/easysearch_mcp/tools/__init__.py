@@ -12,6 +12,7 @@ from .snapshot import register_snapshot_tools
 from .slm import register_slm_tools
 from .tasks import register_tasks_tools
 from .ingest import register_ingest_tools
+from .ilm import register_ilm_tools
 
 
 def register_all_tools(mcp):
@@ -26,3 +27,4 @@ def register_all_tools(mcp):
     register_slm_tools(mcp)
     register_tasks_tools(mcp)
     register_ingest_tools(mcp)
+    register_ilm_tools(mcp)

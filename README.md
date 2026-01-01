@@ -2,7 +2,6 @@
 
 <p align="center">
   <a href="https://github.com/infinilabs/easysearch-mcp-server/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="https://pypi.org/project/easysearch-mcp-server/"><img src="https://img.shields.io/pypi/v/easysearch-mcp-server.svg" alt="PyPI"></a>
   <a href="https://python.org"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python"></a>
 </p>
 
@@ -10,7 +9,7 @@
 
 ## 特性
 
-- 🔧 **116 个工具** - 覆盖集群、索引、文档、搜索、监控等全部功能
+- 🔧 **121 个工具** - 覆盖集群、索引、文档、搜索、监控等全部功能
 - 🔌 **即插即用** - 支持 Kiro、Claude Desktop 等 MCP 客户端
 - 🔒 **安全连接** - 支持 HTTPS 和基础认证
 - ⚡ **高性能** - 基于 httpx 异步 HTTP 客户端
@@ -18,11 +17,12 @@
 ## 安装
 
 ```bash
-# PyPI 安装
-pip install easysearch-mcp-server
+# 克隆仓库
+git clone https://github.com/infinilabs/easysearch-mcp-server.git
+cd easysearch-mcp-server
 
-# 或使用 uv
-uv pip install easysearch-mcp-server
+# 安装依赖
+pip install -e .
 ```
 
 ## 快速开始
@@ -34,12 +34,14 @@ uv pip install easysearch-mcp-server
 {
   "mcpServers": {
     "easysearch": {
-      "command": "uvx",
-      "args": ["easysearch-mcp-server"],
+      "command": "python3",
+      "args": ["-m", "easysearch_mcp.server"],
+      "cwd": "/path/to/easysearch-mcp-server/src",
       "env": {
         "EASYSEARCH_URL": "https://localhost:9200",
         "EASYSEARCH_USER": "admin",
-        "EASYSEARCH_PASSWORD": "your-password"
+        "EASYSEARCH_PASSWORD": "your-password",
+        "PYTHONPATH": "/path/to/easysearch-mcp-server/src"
       }
     }
   }
@@ -51,17 +53,21 @@ uv pip install easysearch-mcp-server
 {
   "mcpServers": {
     "easysearch": {
-      "command": "uvx",
-      "args": ["easysearch-mcp-server"],
+      "command": "python3",
+      "args": ["-m", "easysearch_mcp.server"],
+      "cwd": "/path/to/easysearch-mcp-server/src",
       "env": {
         "EASYSEARCH_URL": "https://localhost:9200",
         "EASYSEARCH_USER": "admin",
-        "EASYSEARCH_PASSWORD": "your-password"
+        "EASYSEARCH_PASSWORD": "your-password",
+        "PYTHONPATH": "/path/to/easysearch-mcp-server/src"
       }
     }
   }
 }
 ```
+
+> 注意：将 `/path/to/easysearch-mcp-server` 替换为实际的项目路径
 
 ### 2. 开始使用
 
@@ -237,6 +243,15 @@ uv pip install easysearch-mcp-server
 | `ingest_stats` | Ingest 统计 |
 | `ingest_processor_grok` | Grok 模式列表 |
 
+### ILM 索引生命周期管理 (5)
+| 工具 | 说明 |
+|------|------|
+| `ilm_policy_get` | 获取 ILM 策略 |
+| `ilm_policy_create` | 创建 ILM 策略 |
+| `ilm_policy_delete` | 删除 ILM 策略 |
+| `ilm_add_policy` | 给索引绑定 ILM 策略 |
+| `ilm_remove_policy` | 从索引移除 ILM 策略 |
+
 ### 其他 (1)
 | 工具 | 说明 |
 |------|------|
@@ -330,8 +345,8 @@ SQL 查询
 git clone https://github.com/infinilabs/easysearch-mcp-server.git
 cd easysearch-mcp-server
 
-# 安装开发依赖
-uv pip install -e ".[dev]"
+# 安装依赖
+pip install -e .
 
 # 运行测试
 pytest
@@ -340,6 +355,29 @@ pytest
 black src/
 ruff check src/
 ```
+
+## 兼容性测试
+
+所有 121 个工具已在 INFINI Easysearch 上完成测试验证：
+
+| 分类 | 工具数 | 状态 |
+|------|--------|------|
+| 集群管理 | 8 | ✅ 全部通过 |
+| 索引管理 | 25 | ✅ 全部通过 |
+| 别名管理 | 4 | ✅ 全部通过 |
+| 模板管理 | 3 | ✅ 全部通过 |
+| 文档操作 | 11 | ✅ 全部通过 |
+| 搜索功能 | 15 | ✅ 全部通过 |
+| CAT API | 19 | ✅ 全部通过 |
+| 节点管理 | 5 | ✅ 全部通过 |
+| 快照管理 | 10 | ✅ 全部通过 |
+| SLM | 6 | ✅ 全部通过 |
+| 任务管理 | 3 | ✅ 全部通过 |
+| Ingest Pipeline | 6 | ✅ 全部通过 |
+| ILM | 5 | ✅ 全部通过 |
+| 其他 | 1 | ✅ 全部通过 |
+
+注意：快照和 SLM 功能需要服务器配置 `path.repo` 才能创建仓库。
 
 ## 许可证
 
