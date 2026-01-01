@@ -1,7 +1,7 @@
 # Easysearch MCP Server
 
 <p align="center">
-  <a href="https://github.com/infinilabs/easysearch-mcp-server/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+  <a href="https://github.com/cloudsmithy/easysearch-mcp-server/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="https://python.org"><img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="Python"></a>
 </p>
 
@@ -18,7 +18,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/infinilabs/easysearch-mcp-server.git
+git clone https://github.com/cloudsmithy/easysearch-mcp-server.git
 cd easysearch-mcp-server
 
 # 安装依赖
@@ -342,7 +342,7 @@ SQL 查询
 
 ```bash
 # 克隆仓库
-git clone https://github.com/infinilabs/easysearch-mcp-server.git
+git clone https://github.com/cloudsmithy/easysearch-mcp-server.git
 cd easysearch-mcp-server
 
 # 安装依赖
