@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "easysearch": {
+      "url": "http://localhost:8080/sse",
+      "autoApprove": [
+        "cluster_health",
+        "cluster_health",
+        "cat_indices",
+        "cat_plugins",
+        "cat_health",
+        "cat_nodes",
+        "cat_shards",
+        "cat_allocation",
+        "cat_thread_pool",
+        "cat_master",
+        "index_create",
+        "doc_bulk_simple",
+        "search",
+        "cat_repositories",
+        "snapshot_repo_create",
+        "cluster_stats",
+        "cat_nodes",
+        "index_get_settings",
+        "index_set_readonly",
+        "index_split",
+        "index_shrink"
+      ],
+      "disabled": false
+    }
+  }
+}
