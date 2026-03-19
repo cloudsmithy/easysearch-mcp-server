@@ -10,7 +10,7 @@
 ## 特性
 
 - 🔧 **121 个工具** - 覆盖集群、索引、文档、搜索、监控等全部功能
-- 🔌 **即插即用** - 支持 Kiro、Claude Desktop 等 MCP 客户端
+- 🔌 **即插即用** - 支持 Kiro、Claude Desktop、OpenCode 等 MCP 客户端
 - 🔒 **安全连接** - 支持 HTTPS 和基础认证
 - ⚡ **高性能** - 基于 httpx 异步 HTTP 客户端
 
@@ -57,6 +57,26 @@ pip install -e .
       "args": ["-m", "easysearch_mcp.server"],
       "cwd": "/path/to/easysearch-mcp-server/src",
       "env": {
+        "EASYSEARCH_URL": "https://localhost:9200",
+        "EASYSEARCH_USER": "admin",
+        "EASYSEARCH_PASSWORD": "your-password",
+        "PYTHONPATH": "/path/to/easysearch-mcp-server/src"
+      }
+    }
+  }
+}
+```
+
+**OpenCode** (`.opencode/opencode.json`):
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "easysearch": {
+      "type": "local",
+      "command": ["python3", "-m", "easysearch_mcp.server"],
+      "enabled": true,
+      "environment": {
         "EASYSEARCH_URL": "https://localhost:9200",
         "EASYSEARCH_USER": "admin",
         "EASYSEARCH_PASSWORD": "your-password",
